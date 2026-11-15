@@ -1,1 +1,114 @@
 
+QUESTION 4 – CHOOSING A MAP FOR A PHARMACY INVENTORY
+
+1. OBJECTIVE
+
+To compare HashMap, TreeMap and Hashtable for managing hospital pharmacy inventory. The experiment measures lookup time and report generation time for different numbers of medicines.
+
+2. COLLECTIONS USED
+
+1. HashMap – Provides fast average-time lookup using medicine codes.
+2. TreeMap – Stores medicine codes in sorted order.
+3. Hashtable – Provides synchronized key-value operations.
+4. LinkedHashMap – Maintains the order in which medicines are inserted.
+
+3. EXPERIMENTAL CONFIGURATION
+
+Programming Language: Java
+IDE: Visual Studio Code
+Time Measurement: System.nanoTime()
+Number of Experimental Runs: 5
+Number of Lookups: 100,000
+
+Dataset Sizes:
+- 1,000 medicines
+- 10,000 medicines
+- 50,000 medicines
+
+4. EXPERIMENTAL RESULTS
+
+A. LOOKUP TIME (100,000 LOOKUPS)
+
+Number of Medicines | HashMap (ms) | TreeMap (ms) | Hashtable (ms)
+
+1,000  | __________ | __________ | __________
+10,000 | __________ | __________ | __________
+50,000 | __________ | __________ | __________
+
+B. CODE-ORDER REPORT GENERATION TIME
+
+Number of Medicines | HashMap (ms) | TreeMap (ms) | Hashtable (ms)
+
+1,000  | __________ | __________ | __________
+10,000 | __________ | __________ | __________
+50,000 | __________ | __________ | __________
+
+C. INSERTION-ORDER REPORT GENERATION TIME
+
+Number of Medicines | LinkedHashMap (ms)
+
+1,000  | __________
+10,000 | __________
+50,000 | __________
+
+5. ORDER VERIFICATION
+
+HashMap:
+- Does not guarantee any particular iteration order.
+
+TreeMap:
+- Maintains medicine codes in sorted order.
+
+Hashtable:
+- Does not guarantee sorted or insertion order.
+
+LinkedHashMap:
+- Maintains insertion order.
+
+6. EXPERIMENTAL OBSERVATIONS
+
+1. HashMap provides O(1) average-time lookup.
+2. TreeMap provides O(log n) lookup and maintains sorted keys.
+3. Hashtable provides synchronized operations.
+4. LinkedHashMap maintains insertion order.
+5. Generating a sorted report from HashMap and Hashtable requires sorting the medicine codes.
+6. TreeMap can directly generate a code-order report.
+
+7. TIME COMPLEXITY ANALYSIS
+
+Operation             HashMap       TreeMap       Hashtable
+
+Lookup                O(1) average  O(log n)      O(1) average
+Insertion             O(1) average  O(log n)      O(1) average
+Sorted report         O(n log n)    O(n)          O(n log n)
+Space                 O(n)          O(n)          O(n)
+
+LinkedHashMap:
+Insertion-order traversal: O(n)
+Space complexity: O(n)
+
+8. ACCEPTABLE RESPONSE TIME
+
+The selected target for one medicine lookup is less than 1 millisecond.
+
+Average lookup time =
+Total time for 100,000 lookups / 100,000
+
+The measured values will be compared with the selected target.
+
+9. ENGINEERING DECISION
+
+HashMap is suitable for frequent medicine-code lookups because it provides O(1) average-time access.
+
+TreeMap is suitable for generating reports in sorted medicine-code order.
+
+LinkedHashMap is suitable for generating reports in insertion order.
+
+Hashtable is not preferred for new applications because modern alternatives provide more flexible approaches to thread safety.
+
+10. CONCLUSION
+
+The experiment compares different Java Map implementations for hospital pharmacy inventory management. HashMap provides efficient lookup, TreeMap maintains sorted medicine codes, and LinkedHashMap preserves insertion order.
+
+Therefore, selecting the appropriate Map implementation according to application requirements improves inventory management and report generation efficiency.
+
