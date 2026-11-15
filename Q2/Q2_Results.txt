@@ -1,1 +1,15 @@
 
+QUESTION 2 - EXPERIMENTAL OBSERVATIONS
+
+1. ArrayList provides fast random access.
+2. LinkedList performs better for insertion and removal at the front.
+3. ArrayList requires shifting elements during front insertion and removal.
+4. LinkedList requires traversal to access a particular position.
+5. ArrayDeque is suitable for double-ended queue operations.
+
+Playlist sizes tested:
+1000, 3000 and 5000 songs.
+
+Number of experimental runs: 5
+Time measurement: System.nanoTime()
+
