@@ -1,0 +1,111 @@
+
+QUESTION 7 – DIAGNOSE, REDESIGN AND VALIDATE
+
+1. OBJECTIVE
+
+To identify a performance limitation in the original pharmacy inventory system and redesign it to improve repeated sorted report generation.
+
+2. SELECTED PROBLEM
+
+Q4 – Pharmacy Inventory using HashMap.
+
+3. BOTTLENECK DIAGNOSIS
+
+The original HashMap does not maintain medicine codes in sorted order.
+
+Every time a sorted report is generated, all medicine codes must be extracted and sorted.
+
+This repeated sorting increases processing time.
+
+Original complexity: O(n log n).
+
+4. DESIGN OBJECTIVE
+
+1. Eliminate repeated sorting.
+2. Maintain medicine codes in sorted order.
+3. Generate reports efficiently.
+4. Preserve correct medicine details.
+5. Compare original and redesigned execution times.
+
+5. ORIGINAL SOLUTION
+
+Data structure: HashMap
+
+Process:
+- Store medicine records.
+- Extract medicine codes.
+- Sort medicine codes.
+- Generate the sorted report.
+
+Report complexity: O(n log n).
+
+6. REDESIGNED SOLUTION
+
+Data structure: TreeMap
+
+Process:
+- Store medicine records in TreeMap.
+- Maintain sorted medicine codes automatically.
+- Generate reports directly using iteration.
+
+Report complexity: O(n).
+
+7. EXPERIMENTAL CONFIGURATION
+
+Programming Language: Java
+IDE: Visual Studio Code
+Time Measurement: System.nanoTime()
+Warm-up runs: 2
+Measured runs: 5
+Reports per measurement: 100
+
+Inventory sizes:
+- 1,000 medicines
+- 10,000 medicines
+- 50,000 medicines
+
+8. EXPERIMENTAL RESULTS
+
+Inventory Size | Original Time (ms) | Redesigned Time (ms)
+
+1,000 | __________ | __________
+10,000 | __________ | __________
+50,000 | __________ | __________
+
+9. OPERATION COMPARISON
+
+Original HashMap:
+- Sorting operations per measurement: 100
+- Report generation: O(n log n)
+
+Redesigned TreeMap:
+- Sorting operations during report generation: 0
+- Report generation: O(n)
+
+10. TIME COMPLEXITY COMPARISON
+
+Operation | HashMap | TreeMap
+
+Lookup | O(1) average | O(log n)
+Insertion | O(1) average | O(log n)
+Sorted report | O(n log n) | O(n)
+
+11. TRADE-OFFS
+
+TreeMap maintains sorted order but requires O(log n) insertion and lookup.
+
+HashMap provides faster average-time lookup and insertion but requires sorting when a sorted report is needed.
+
+12. FINAL ENGINEERING DECISION
+
+TreeMap is suitable when sorted reports are generated frequently.
+
+HashMap is suitable when frequent lookups and updates are the main requirements.
+
+13. CONCLUSION
+
+The experiment identifies repeated sorting as the main limitation of the original HashMap implementation.
+
+The redesigned TreeMap eliminates repeated sorting during report generation and provides direct access to medicine records in sorted order.
+
+Both solutions are compared using repeated measurements and identical inventory sizes to evaluate their performance and correctness.
