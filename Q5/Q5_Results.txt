@@ -1,0 +1,71 @@
+
+QUESTION 5 – GENERIC RANKING COMPONENT
+
+1. OBJECTIVE
+
+To develop a reusable Java ranking component using Generics, Comparable and Comparator. The experiment ranks teams based on points, goal difference and team name.
+
+2. CONCEPTS USED
+
+1. Comparable – Defines natural ordering inside a class.
+2. Comparator – Defines external custom sorting rules.
+3. Generics – Makes the Leaderboard reusable for different data types.
+4. Wildcards – Allows List<? extends T> to accept lists of subclasses.
+5. Comparator chaining – Combines multiple ranking conditions.
+
+3. RANKING RULES
+
+1. Higher points receive higher rank.
+2. If points are equal, higher goal difference receives higher rank.
+3. If both are equal, team name is arranged alphabetically.
+
+4. EXPERIMENTAL DATASET
+
+Dataset 1:
+- Alpha (100 points, 20 goal difference)
+- Beta (100 points, 15 goal difference)
+- Delta (100 points, 20 goal difference)
+- Gamma (90 points, 25 goal difference)
+- Epsilon (90 points, 25 goal difference)
+- Zeta (90 points, 10 goal difference)
+
+Dataset 2:
+- Team A (100 points, 10 goal difference)
+- Team B (100 points, 30 goal difference)
+- Team C (100 points, 20 goal difference)
+
+5. EXPERIMENTAL OBSERVATIONS
+
+1. Comparator chaining correctly applies multiple ranking conditions.
+2. Higher points receive priority.
+3. Goal difference resolves ties in points.
+4. Team name resolves remaining ties.
+5. The faulty comparator ignores tie-breaking conditions.
+6. Subtraction-based comparison can cause integer overflow.
+7. Integer.compare() provides safe integer comparison.
+
+6. GENERIC DESIGN
+
+The Leaderboard<T> class accepts any rankable object along with a Comparator.
+
+The ranking() method creates a new list and sorts it without modifying the original list.
+
+The addAll(List<? extends T>) method accepts a list of objects of type T or its subclasses.
+
+7. TIME COMPLEXITY
+
+Comparator chaining: O(n log n)
+Comparable sorting: O(n log n)
+Three stable sorting passes: O(3n log n)
+
+Extra space for the copied ranking list: O(n).
+
+8. ENGINEERING DECISION
+
+Comparator chaining is preferred because it supports multiple ranking conditions and can be reused for teams, players and colleges without modifying their classes.
+
+9. CONCLUSION
+
+The experiment demonstrates how Java Generics and Comparator can be used to develop a reusable leaderboard. Multiple comparison conditions are combined using Comparator.comparingInt(), reversed() and thenComparing().
+
+The experiment also demonstrates the problems caused by faulty comparators and integer overflow. Therefore, a consistent comparator is important for accurate ranking and reliable sorting.
