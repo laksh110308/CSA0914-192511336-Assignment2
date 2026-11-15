@@ -1,0 +1,105 @@
+
+QUESTION 6 – PRIORITY, ORDER AND FAIRNESS IN A QUEUE
+
+1. OBJECTIVE
+
+To develop a hospital emergency triage system using Java PriorityQueue. The system prioritizes patients based on severity and arrival order.
+
+2. PRIORITY RULES
+
+1. Severity 1 receives the highest priority.
+2. Severity 2 receives the next priority.
+3. Severity 3 receives medium priority.
+4. Severity 4 receives low priority.
+5. Severity 5 receives the lowest priority.
+6. Patients with equal severity are treated in arrival order.
+
+3. DATA STRUCTURE USED
+
+PriorityQueue is used to maintain patients according to their severity and arrival time.
+
+Comparator is used to compare patients.
+
+A counter variable maintains the arrival order.
+
+4. EXPERIMENTAL DATASET
+
+Eight patients were used for testing:
+
+Arun - Severity 3
+Bala - Severity 1
+Chitra - Severity 2
+Divya - Severity 1
+Ezhil - Severity 4
+Farah - Severity 2
+Gokul - Severity 5
+Hari - Severity 3
+
+5. EXPECTED TREATMENT ORDER
+
+1. Bala - Severity 1
+2. Divya - Severity 1
+3. Chitra - Severity 2
+4. Farah - Severity 2
+5. Arun - Severity 3
+6. Hari - Severity 3
+7. Ezhil - Severity 4
+8. Gokul - Severity 5
+
+6. GROWTH INVESTIGATION
+
+Queue Size | Add Time (ms) | Remove Time (ms)
+
+1,000  | __________ | __________
+10,000 | __________ | __________
+50,000 | __________ | __________
+
+Number of experimental runs: 5
+Time measurement: System.nanoTime()
+
+7. TIME COMPLEXITY ANALYSIS
+
+PriorityQueue:
+- Adding a patient: O(log n)
+- Removing the next patient: O(log n)
+- Viewing the next patient: O(1)
+- Searching for a patient: O(n)
+- Space complexity: O(n)
+
+Sorted LinkedList:
+- Adding a patient: O(n)
+- Removing the next patient: O(1)
+- Space complexity: O(n)
+
+Five FIFO Queues:
+- Adding a patient: O(1)
+- Removing the next patient: O(1)
+- Space complexity: O(n)
+
+8. STARVATION AND FAIRNESS
+
+Starvation occurs when low-priority patients wait indefinitely because higher-priority patients continuously arrive.
+
+Aging is proposed as a solution. The priority of a patient can be improved after every 30 minutes of waiting.
+
+The priority queue must be rebuilt whenever effective priorities are updated.
+
+9. DIRECT PRIORITYQUEUE DISPLAY
+
+Printing a PriorityQueue directly does not guarantee treatment order because its internal structure is a heap, not a completely sorted list.
+
+Repeatedly using poll() on a copied queue displays the correct treatment order.
+
+10. DEPLOYMENT DECISION
+
+The PriorityQueue design can support a hospital receiving 5,000 patients per day because insertion and removal operations take O(log n) time.
+
+For real-world deployment, additional features such as patient record storage, multiple doctor support, concurrency control and emergency overrides are required.
+
+11. CONCLUSION
+
+The experiment demonstrates the use of Java PriorityQueue for hospital emergency triage. Patients are treated according to severity, and patients with equal severity are treated in their arrival order.
+
+The growth investigation evaluates insertion and removal performance at different queue sizes. Aging is proposed to reduce starvation and improve fairness.
+
+Therefore, PriorityQueue provides an efficient approach for managing emergency patient priorities.
